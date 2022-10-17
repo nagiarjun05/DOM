@@ -49,7 +49,7 @@ secondElement.style.backgroundColor='green';
 var thirdElement=document.querySelector('.list-group-item:nth-child(3)');
 thirdElement.style.display='none';*/
 
-var items=document.querySelectorAll('.list-group-item');
+/*var items=document.querySelectorAll('.list-group-item');
 
 items[1].style.color='green';
 
@@ -57,4 +57,55 @@ var oddItems=document.querySelectorAll('.list-group-item:nth-child(odd)');
 
 for(let i=0;i<oddItems.length;i++){
     oddItems[i].style.backgroundColor='green';      
-}
+}*/
+
+/*Parent element
+var div1=document.querySelector('#main');
+console.log(div1.parentElement);
+div1.parentElement.style.backgroundColor='#ccc';*/
+
+/*Last child and last element child
+var itemList=document.querySelector('#items');
+console.log(itemList.lastElementChild);
+itemList.lastElementChild.style.color='blue';
+console.log(itemList.lastChild);*/
+
+/*first child and first element child
+itemList.firstElementChild.style.backgroundColor='yellow';
+console.log(itemList.firstChild);*/
+
+/*Next sibling and next element sibling
+var header=document.querySelector('.title');
+console.log(header);
+console.log(header.nextElementSibling);
+console.log(header.nextSibling);*/
+
+//header.nextElementSibling.style.backgroundColor='#ccc';
+
+//Prev sibling and prev element sibling
+//console.log(itemList.previousElementSibling);
+//console.log(header.previousSibling);
+
+//itemList.previousElementSibling.style.backgroundColor='#ccc';
+
+
+//create an element
+var newDiv=document.createElement('div');
+
+//set attribute
+newDiv.setAttribute('title', 'Hello world!');
+
+//create text node
+var newDivText=document.createTextNode('Hello World');
+
+//append child
+newDiv.appendChild(newDivText);
+
+var container=document.querySelector('header .container');
+var h1=document.querySelector('header h1');
+
+console.log(newDiv);
+
+newDiv.style.fontsize='60px';
+
+container.insertBefore(newDiv,h1);
