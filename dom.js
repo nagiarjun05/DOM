@@ -89,7 +89,7 @@ console.log(header.nextSibling);*/
 //itemList.previousElementSibling.style.backgroundColor='#ccc';
 
 
-//create an element
+/*create an element
 var newDiv=document.createElement('div');
 
 //set attribute
@@ -108,4 +108,47 @@ console.log(newDiv);
 
 newDiv.style.fontsize='60px';
 
-container.insertBefore(newDiv,h1);
+container.insertBefore(newDiv,h1);*/
+
+
+//Getting value from the input
+
+
+//making variable for the list
+var itemList=document.getElementById('items');
+
+var myForm=document.getElementById('addForm');
+
+myForm.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
+
+function removeItem(e) {
+    if(e.target.classList.contains('delete')){
+        if (confirm('Are you Sure?')) {
+            var li=e.target.parentElement;
+            itemList.removeChild(li)
+        }
+    }
+    }
+
+
+function addItem(e){
+    e.preventDefault();
+    var data=document.getElementById('item').value;
+    var inputText=document.createTextNode(data);
+    var li=document.createElement('li');
+    li.className='list-group-item';
+    li.appendChild(inputText);
+
+    var dlt=document.createElement('button');
+    dlt.className='btn btn-danger btn-sm float-right delete';
+    dlt.appendChild(document.createTextNode('X'));
+    li.appendChild(dlt);
+
+    var addition=document.createElement('button');
+    addition.className='btn btn-add btn-sm float-right add';
+    addition.appendChild(document.createTextNode('Add'));
+    li.appendChild(addition);
+
+    itemList.appendChild(li);
+}
