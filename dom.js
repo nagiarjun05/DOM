@@ -119,8 +119,13 @@ var itemList=document.getElementById('items');
 
 var myForm=document.getElementById('addForm');
 
-myForm.addEventListener('submit', addItem);
-itemList.addEventListener('click', removeItem);
+var filter=document.getElementById('filter');
+
+myForm.addEventListener('submit', addItem,);
+itemList.addEventListener('click', removeItem,);
+filter.addEventListener('keyup', filterItems);
+
+
 
 function removeItem(e) {
     if(e.target.classList.contains('delete')){
@@ -136,9 +141,13 @@ function addItem(e){
     e.preventDefault();
     var data=document.getElementById('item').value;
     var inputText=document.createTextNode(data);
+    var disc=document.createTextNode(' '+document.getElementById('discript').value)
+
     var li=document.createElement('li');
     li.className='list-group-item';
     li.appendChild(inputText);
+    li.appendChild(disc);
+
 
     var dlt=document.createElement('button');
     dlt.className='btn btn-danger btn-sm float-right delete';
@@ -146,9 +155,24 @@ function addItem(e){
     li.appendChild(dlt);
 
     var addition=document.createElement('button');
-    addition.className='btn btn-add btn-sm float-right add';
-    addition.appendChild(document.createTextNode('Add'));
+    addition.className='btn btn-sm float-right editBtn';
+    addition.appendChild(document.createTextNode('EDIT'));
     li.appendChild(addition);
 
     itemList.appendChild(li);
+    }
+
+
+function filterItems(e){
+    var filterText=e.target.value.toLowerCase();
+    var rawItems=itemList.getElementsByTagName('li');
+    Array.from(rawItems).forEach(function(fItem){
+        itemName=fItem.firstChild.textContent;
+        discName=fItem.childNodes[1].textContent; 
+        if(itemName.toLowerCase().indexOf(filterText)!=-1||discName.toLowerCase().indexOf(filterText)!=-1){
+            fItem.style.display='block';
+        }else {
+            fItem.style.display='none';
+        }
+    })
 }
